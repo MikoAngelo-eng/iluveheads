@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Eraserheads Song Player</title>
+<title>Eraserheads Song Player (No MP3 Needed)</title>
 <style>
 body {
   font-family: Arial, sans-serif;
@@ -53,38 +53,30 @@ audio {
 <h1>Eraserheads Songs 🎵</h1>
 
 <!-- Song buttons -->
-<button onclick="playSong('magasin')">Magasin</button>
-<button onclick="playSong('torpedo')">Torpedo</button>
-<button onclick="playSong('fruitcake')">Fruitcake</button>
-<button onclick="playSong('huling')">Huling El Bimbo</button>
-<button onclick="playSong('ligaya')">Ligaya</button>
-<button onclick="playSong('pare')">Pare Ko</button>
+<button onclick="playSong('Magasin')">Magasin</button>
+<button onclick="playSong('Torpedo')">Torpedo</button>
+<button onclick="playSong('Fruitcake')">Fruitcake</button>
+<button onclick="playSong('Huling El Bimbo')">Huling El Bimbo</button>
+<button onclick="playSong('Ligaya')">Ligaya</button>
+<button onclick="playSong('Pare Ko')">Pare Ko</button>
 
 <!-- Current song title -->
 <div class="song-title" id="currentSong">No song playing</div>
 
-<!-- Audio player -->
+<!-- Audio player (won’t actually play anything) -->
 <audio id="player" controls>
   Your browser does not support the audio element.
 </audio>
 
 <script>
-// Replace with your actual GitHub raw URLs for the MP3s
-const songs = {
-  magasin: "https://raw.githubusercontent.com/MikoAngelo-eng/iluveheads.github.io/main/magasin.mp3",
-  torpedo: "https://raw.githubusercontent.com/MikoAngelo-eng/iluveheads.github.io/main/torpedo.mp3",
-  fruitcake: "https://raw.githubusercontent.com/MikoAngelo-eng/iluveheads.github.io/main/fruitcake.mp3",
-  huling: "https://raw.githubusercontent.com/MikoAngelo-eng/iluveheads.github.io/main/huling.mp3",
-  ligaya: "https://raw.githubusercontent.com/MikoAngelo-eng/iluveheads.github.io/main/ligaya.mp3",
-  pare: "https://raw.githubusercontent.com/MikoAngelo-eng/iluveheads.github.io/main/pare.mp3"
-};
-
-function playSong(songId) {
-  const player = document.getElementById("player");
+function playSong(songName) {
   const currentSong = document.getElementById("currentSong");
-  player.src = songs[songId];
-  player.play();
-  currentSong.textContent = "Now Playing: " + songId.charAt(0).toUpperCase() + songId.slice(1).replace(/_/g, " ");
+  currentSong.textContent = "Now Playing: " + songName;
+
+  // Simulate audio by just clearing and pausing
+  const player = document.getElementById("player");
+  player.src = ""; // no file
+  player.pause();
 }
 </script>
 
