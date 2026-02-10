@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Eraserheads Song Player (No MP3 Needed)</title>
+<title>Eraserheads Song Player (YouTube)</title>
 <style>
 body {
   font-family: Arial, sans-serif;
@@ -16,13 +16,6 @@ body {
 h1 {
   font-size: 36px;
   margin-bottom: 20px;
-}
-
-.song-title {
-  margin-top: 20px;
-  font-size: 24px;
-  font-weight: bold;
-  color: #ff4d6d;
 }
 
 button {
@@ -41,9 +34,8 @@ button:hover {
   transform: scale(1.1);
 }
 
-audio {
+iframe {
   margin-top: 30px;
-  outline: none;
   border-radius: 10px;
 }
 </style>
@@ -53,30 +45,40 @@ audio {
 <h1>Eraserheads Songs 🎵</h1>
 
 <!-- Song buttons -->
-<button onclick="playSong('Magasin')">Magasin</button>
-<button onclick="playSong('Torpedo')">Torpedo</button>
-<button onclick="playSong('Fruitcake')">Fruitcake</button>
-<button onclick="playSong('Huling El Bimbo')">Huling El Bimbo</button>
-<button onclick="playSong('Ligaya')">Ligaya</button>
-<button onclick="playSong('Pare Ko')">Pare Ko</button>
+<button onclick="playSong('magasin')">Magasin</button>
+<button onclick="playSong('torpedo')">Torpedo</button>
+<button onclick="playSong('fruitcake')">Fruitcake</button>
+<button onclick="playSong('huling')">Huling El Bimbo</button>
+<button onclick="playSong('ligaya')">Ligaya</button>
+<button onclick="playSong('pare')">Pare Ko</button>
 
 <!-- Current song title -->
 <div class="song-title" id="currentSong">No song playing</div>
 
-<!-- Audio player (won’t actually play anything) -->
-<audio id="player" controls>
-  Your browser does not support the audio element.
-</audio>
+<!-- YouTube player -->
+<div id="playerContainer">
+  <iframe id="player" width="560" height="315" src="" 
+    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe>
+</div>
 
 <script>
-function playSong(songName) {
-  const currentSong = document.getElementById("currentSong");
-  currentSong.textContent = "Now Playing: " + songName;
+// YouTube video IDs for the songs
+const songs = {
+  magasin: "o0Zc7_gxHfc",
+  torpedo: "qJ-bG8sRzH8",
+  fruitcake: "EXAMPLE_VIDEO_ID", // replace with actual video ID
+  huling: "pD7oHQYj3dM",
+  ligaya: "A3b0x2xY1W0",
+  pare: "u1cI6yA0CwY"
+};
 
-  // Simulate audio by just clearing and pausing
+function playSong(songId) {
   const player = document.getElementById("player");
-  player.src = ""; // no file
-  player.pause();
+  const currentSong = document.getElementById("currentSong");
+  player.src = "https://www.youtube.com/embed/" + songs[songId] + "?autoplay=1";
+  currentSong.textContent = "Now Playing: " + songId.charAt(0).toUpperCase() + songId.slice(1).replace(/_/g, " ");
 }
 </script>
 
