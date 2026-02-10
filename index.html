@@ -2,123 +2,83 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Will You Be My Valentine?</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eraserheads Song Player (YouTube)</title>
 <style>
 body {
   font-family: Arial, sans-serif;
-  background: pink;
+  background: linear-gradient(to right, #ffdde1, #ee9ca7);
   text-align: center;
-  padding-top: 100px;
-  overflow: hidden; /* so hearts stay visible */
+  padding-top: 50px;
+  color: #333;
 }
 
 h1 {
-  color: red;
+  font-size: 36px;
+  margin-bottom: 20px;
 }
 
 button {
-  font-size: 20px;
-  padding: 10px 20px;
+  font-size: 18px;
+  padding: 12px 25px;
   margin: 10px;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
-}
-
-.yes {
   background-color: #ff4d6d;
   color: white;
+  transition: transform 0.2s;
 }
 
-.no {
-  background-color: white;
+button:hover {
+  transform: scale(1.1);
 }
 
-#loveMessage {
-  font-size: 28px;
-  color: darkred;
+iframe {
   margin-top: 30px;
-  font-weight: bold;
-}
-
-/* Hearts animation */
-.heart {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  background: url('https://i.gifer.com/origin/9e/9e2b0b5a6e1f9c3a36d479f19c06ce39_w200.gif') no-repeat center;
-  background-size: contain;
-  animation: bounce 3s ease-in-out infinite;
-}
-
-@keyframes bounce {
-  0%   { transform: translateY(0) scale(1); }
-  25%  { transform: translateY(-30px) scale(1.1); }
-  50%  { transform: translateY(0) scale(1); }
-  75%  { transform: translateY(-15px) scale(1.05); }
-  100% { transform: translateY(0) scale(1); }
+  border-radius: 10px;
 }
 </style>
 </head>
-
 <body>
 
-<h1>Will You Be My Valentine? 💘</h1>
+<h1>Eraserheads Songs 🎵</h1>
 
-<button class="yes" onclick="startMusic()">Yes 💕</button>
-<button class="no" onmouseover="moveButton(this)">No 💔</button>
+<!-- Song buttons -->
+<button onclick="playSong('magasin')">Magasin</button>
+<button onclick="playSong('torpedo')">Torpedo</button>
+<button onclick="playSong('fruitcake')">Fruitcake</button>
+<button onclick="playSong('huling')">Huling El Bimbo</button>
+<button onclick="playSong('ligaya')">Ligaya</button>
+<button onclick="playSong('pare')">Pare Ko</button>
 
-<p id="loveMessage"></p>
+<!-- Current song title -->
+<div class="song-title" id="currentSong">No song playing</div>
 
-<!-- Background Music -->
-<iframe
-  id="music"
-  width="0"
-  height="0"
-  frameborder="0"
-  allow="autoplay">
-</iframe>
+<!-- YouTube player -->
+<div id="playerContainer">
+  <iframe id="player" width="560" height="315" src="" 
+    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe>
+</div>
 
 <script>
-function startMusic() {
-  // Play music
-  document.getElementById("music").src =
-    "https://www.youtube.com/embed/cNGjD0VG4R8?autoplay=1&loop=1&playlist=cNGjD0VG4R8&start=63";
+// YouTube video IDs for the songs
+const songs = {
+  magasin: "o0Zc7_gxHfc",
+  torpedo: "qJ-bG8sRzH8",
+  fruitcake: "EXAMPLE_VIDEO_ID", // replace with actual video ID
+  huling: "pD7oHQYj3dM",
+  ligaya: "A3b0x2xY1W0",
+  pare: "u1cI6yA0CwY"
+};
 
-  // Show message
-  document.getElementById("loveMessage").textContent = "I LOVE YOU, DARLING LOVE!!!";
-
-  // Create hearts
-  createHearts();
-}
-
-function moveButton(button) {
-  const x = Math.random() * window.innerWidth * 0.6;
-  const y = Math.random() * window.innerHeight * 0.6;
-  button.style.position = "absolute";
-  button.style.left = x + "px";
-  button.style.top = y + "px";
-}
-
-function createHearts() {
-  const numberOfHearts = 30; // number of hearts
-  for (let i = 0; i < numberOfHearts; i++) {
-    const heart = document.createElement('div');
-    heart.className = 'heart';
-
-    // Random position
-    heart.style.left = Math.random() * (window.innerWidth - 50) + 'px';
-    heart.style.top = Math.random() * (window.innerHeight - 50) + 'px';
-
-    // Random animation delay so hearts bounce at different times
-    heart.style.animationDelay = (Math.random() * 2) + 's';
-
-    document.body.appendChild(heart);
-
-    // Remove heart after 10 seconds
-    setTimeout(() => heart.remove(), 10000);
-  }
+function playSong(songId) {
+  const player = document.getElementById("player");
+  const currentSong = document.getElementById("currentSong");
+  player.src = "https://www.youtube.com/embed/" + songs[songId] + "?autoplay=1";
+  currentSong.textContent = "Now Playing: " + songId.charAt(0).toUpperCase() + songId.slice(1).replace(/_/g, " ");
 }
 </script>
 
