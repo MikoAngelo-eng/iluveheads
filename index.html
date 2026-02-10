@@ -2,22 +2,31 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Eraserheads Song Player</title>
 <style>
 body {
   font-family: Arial, sans-serif;
-  background: #f0f0f0;
+  background: linear-gradient(to right, #ffdde1, #ee9ca7);
   text-align: center;
   padding-top: 50px;
+  color: #333;
 }
 
 h1 {
-  color: #333;
-  margin-bottom: 40px;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.song-title {
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff4d6d;
 }
 
 button {
-  font-size: 20px;
+  font-size: 18px;
   padding: 12px 25px;
   margin: 10px;
   border: none;
@@ -34,14 +43,16 @@ button:hover {
 
 audio {
   margin-top: 30px;
+  outline: none;
+  border-radius: 10px;
 }
 </style>
 </head>
-
 <body>
+
 <h1>Eraserheads Songs 🎵</h1>
 
-<!-- Buttons for songs -->
+<!-- Song buttons -->
 <button onclick="playSong('magasin')">Magasin</button>
 <button onclick="playSong('torpedo')">Torpedo</button>
 <button onclick="playSong('fruitcake')">Fruitcake</button>
@@ -49,27 +60,33 @@ audio {
 <button onclick="playSong('ligaya')">Ligaya</button>
 <button onclick="playSong('pare')">Pare Ko</button>
 
-<!-- Audio Player -->
+<!-- Current song title -->
+<div class="song-title" id="currentSong">No song playing</div>
+
+<!-- Audio player -->
 <audio id="player" controls>
   Your browser does not support the audio element.
 </audio>
 
 <script>
-// Object mapping song IDs to audio URLs
+// Replace with your actual GitHub raw URLs for the MP3s
 const songs = {
-  magasin: "URL_TO_MAGASIN_MP3",
-  torpedo: "URL_TO_TORPEDO_MP3",
-  fruitcake: "URL_TO_FRUITCAKE_MP3",
-  huling: "URL_TO_HULING_EL_BIMBO_MP3",
-  ligaya: "URL_TO_LIGAYA_MP3",
-  pare: "URL_TO_PARE_KO_MP3"
+  magasin: "https://raw.githubusercontent.com/MikoAngelo-eng/iluveheads.github.io/main/magasin.mp3",
+  torpedo: "https://raw.githubusercontent.com/MikoAngelo-eng/iluveheads.github.io/main/torpedo.mp3",
+  fruitcake: "https://raw.githubusercontent.com/MikoAngelo-eng/iluveheads.github.io/main/fruitcake.mp3",
+  huling: "https://raw.githubusercontent.com/MikoAngelo-eng/iluveheads.github.io/main/huling.mp3",
+  ligaya: "https://raw.githubusercontent.com/MikoAngelo-eng/iluveheads.github.io/main/ligaya.mp3",
+  pare: "https://raw.githubusercontent.com/MikoAngelo-eng/iluveheads.github.io/main/pare.mp3"
 };
 
 function playSong(songId) {
   const player = document.getElementById("player");
+  const currentSong = document.getElementById("currentSong");
   player.src = songs[songId];
   player.play();
+  currentSong.textContent = "Now Playing: " + songId.charAt(0).toUpperCase() + songId.slice(1).replace(/_/g, " ");
 }
 </script>
+
 </body>
 </html>
