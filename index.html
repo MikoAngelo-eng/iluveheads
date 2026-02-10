@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Eraserheads Song Player</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f0f0f0;
+  text-align: center;
+  padding-top: 50px;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 40px;
+}
+
+button {
+  font-size: 20px;
+  padding: 12px 25px;
+  margin: 10px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background-color: #ff4d6d;
+  color: white;
+  transition: transform 0.2s;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+audio {
+  margin-top: 30px;
+}
+</style>
+</head>
+
+<body>
+<h1>Eraserheads Songs 🎵</h1>
+
+<!-- Buttons for songs -->
+<button onclick="playSong('magasin')">Magasin</button>
+<button onclick="playSong('torpedo')">Torpedo</button>
+<button onclick="playSong('fruitcake')">Fruitcake</button>
+<button onclick="playSong('huling')">Huling El Bimbo</button>
+<button onclick="playSong('ligaya')">Ligaya</button>
+<button onclick="playSong('pare')">Pare Ko</button>
+
+<!-- Audio Player -->
+<audio id="player" controls>
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+// Object mapping song IDs to audio URLs
+const songs = {
+  magasin: "URL_TO_MAGASIN_MP3",
+  torpedo: "URL_TO_TORPEDO_MP3",
+  fruitcake: "URL_TO_FRUITCAKE_MP3",
+  huling: "URL_TO_HULING_EL_BIMBO_MP3",
+  ligaya: "URL_TO_LIGAYA_MP3",
+  pare: "URL_TO_PARE_KO_MP3"
+};
+
+function playSong(songId) {
+  const player = document.getElementById("player");
+  player.src = songs[songId];
+  player.play();
+}
+</script>
+</body>
+</html>
